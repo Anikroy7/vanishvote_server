@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose";
+import { TOption, TPoll } from "./poll.interface";
 
-const optionSchema = new Schema({
-    question: {
+const optionSchema = new Schema<TOption>({
+    text: {
         type: String,
         required: true,
     },
@@ -12,12 +13,10 @@ const optionSchema = new Schema({
     },
 })
 
-const pollSchema = new Schema({
+const pollSchema = new Schema<TPoll>({
 
     pollType: {
         enum: ["yes_no", "multiple_choice"],
-        type: String,
-        required: true,
     },
     options: {
         type: [optionSchema],
