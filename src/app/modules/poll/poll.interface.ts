@@ -13,10 +13,15 @@ export type TPoll = {
 
 export type TOption= {
     text: string;
-    vote: number;
+    vote: string[];
 }
 
 enum PollType {
     "yes_no",
     "multiple_choice"
+}
+
+export type TVote = {
+    optionIndex: number;
+    userId: string;
 }

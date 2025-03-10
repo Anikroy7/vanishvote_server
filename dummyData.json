@@ -1,0 +1,44 @@
+[
+    {
+        "pollType": "yes_no",
+        "options": [
+            {
+                "text": "Yes",
+                "vote": 5
+            },
+            {
+                "text": "No",
+                "vote": 3
+            }
+        ],
+        "question": "Do you support the new company policy?",
+        "createdAt": "2025-03-10T14:30:00.000Z",
+        "expiresAt": "2025-03-15T14:30:00.000Z",
+        "resultsHidden": false,
+        "private": true,
+        "createdBy": "user_67890"
+    },
+    {
+        "pollType": "multiple_choice",
+        "options": [
+            {
+                "text": "js",
+                "vote": 0
+            },
+            {
+                "text": "php",
+                "vote": 0
+            },
+            {
+                "text": "python",
+                "vote": 0
+            }
+        ],
+        "question": "Which programming language do you prefer?",
+        "createdAt": "2025-03-10T12:00:00.000Z",
+        "expiresAt": "2025-03-17T12:00:00.000Z",
+        "resultsHidden": true,
+        "private": false,
+        "createdBy": "user_12345"
+    }
+]

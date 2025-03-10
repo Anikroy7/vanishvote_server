@@ -7,7 +7,7 @@ const optionSchema = new Schema<TOption>({
         required: true,
     },
     vote: {
-        type: Number,
+        type: [String],
         required: true,
 
     },

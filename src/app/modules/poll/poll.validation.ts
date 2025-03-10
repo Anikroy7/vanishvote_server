@@ -4,9 +4,7 @@ const optionValicationSchema = z.object({
     text: z.string({
         required_error: "Option text is required",
     }),
-    vote: z.number({
-        required_error: "Option vote is required",
-    })
+    vote: z.array(z.string()),
 })
 export const createPollValidationSchema = z.object({
     body: z.object({
@@ -30,3 +28,15 @@ export const createPollValidationSchema = z.object({
         ),
     }),
 });
+
+
+export const createVoteSchema = z.object({
+    body: z.object({
+        optionIndex: z.number({
+            required_error: "Option index is required",
+        }),
+        userId: z.string({
+            required_error: "User ID is required",
+        }),
+    })
+})
