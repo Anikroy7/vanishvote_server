@@ -8,10 +8,17 @@ export type TPoll = {
     createdAt: Date;
     resultsHidden: boolean;
     private: boolean;
+    reactions: TReaction[];
 }
 
 
-export type TOption= {
+export type TReaction={
+    userId: string;
+    reactionType: ReactionType
+
+}
+
+export type TOption = {
     text: string;
     vote: string[];
 }
@@ -21,7 +28,13 @@ enum PollType {
     "multiple_choice"
 }
 
+enum ReactionType {
+   'trending', 'like'
+}
+
 export type TVote = {
     optionIndex: number;
     userId: string;
 }
+
+

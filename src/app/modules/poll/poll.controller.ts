@@ -24,9 +24,21 @@ const createVote = catchAsync(async (req, res) => {
         data: result,
     });
 });
+const createReaction = catchAsync(async (req, res) => {
+    const bodyData = req.body;
+    const { pollId } = req.params;
+    const result = await PollServices.createReactionIntoDB(pollId, bodyData);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Poll created successfully",
+        data: result,
+    });
+});
 
 
 export const PollControllers = {
     createPoll,
-    createVote
+    createVote,
+    createReaction
 }

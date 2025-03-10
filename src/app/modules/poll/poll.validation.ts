@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TReaction } from "./poll.interface";
 
 const optionValicationSchema = z.object({
     text: z.string({
@@ -34,6 +35,17 @@ export const createVoteSchema = z.object({
     body: z.object({
         optionIndex: z.number({
             required_error: "Option index is required",
+        }),
+        userId: z.string({
+            required_error: "User ID is required",
+        }),
+    })
+})
+
+export const createReactionSchema = z.object({
+    body: z.object({
+        reactionType: z.enum(['trending', 'like'], {
+            required_error: "Reaction type is required",
         }),
         userId: z.string({
             required_error: "User ID is required",
