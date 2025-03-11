@@ -24,18 +24,44 @@ const createReactionIntoDB = async (pollId: string, payload: TReaction) => {
     if (!poll) {
         throw new Error("Poll not found");
     }
+
+
     const exists = poll.reactions.find((reaction) => reaction.userId === payload.userId);
     if (exists) {
-        throw new Error("Reaction already given!");
+        const newReactions = poll.reactions.filter((reaction) => reaction.userId !== payload.userId);
+        poll.reactions = newReactions;
     }
     poll.reactions.push(payload);
     await poll.save();
     return poll;
 }
 
+const getPollFromDB = async (pollId: string) => {
+    const poll = await Poll.findById(pollId);
+    if (!poll) {
+        throw new Error("Poll not found");
+    }
+    return poll;
+}
+const getAllPollsFromDB = async () => {
+    const poll = await Poll.find({
+        private: false,
+    }).sort({ createdAt: -1 }).exec();
+    return poll;
+}
+const getMyPollsFromDB = async (userId: string) => {
+    const poll = await Poll.find({
+        createdBy: userId
+    }).exec();
+    return poll;
+}
 
 export const PollServices = {
     createPollIntoDB,
     createVoteIntoDB,
-    createReactionIntoDB
+    createReactionIntoDB,
+    getPollFromDB,
+    getAllPollsFromDB,
+    getMyPollsFromDB
+
 }

@@ -20,7 +20,7 @@ const createVote = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Poll created successfully",
+        message: "Vote created successfully",
         data: result,
     });
 });
@@ -31,7 +31,38 @@ const createReaction = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Poll created successfully",
+        message: "Reaction created successfully",
+        data: result,
+    });
+});
+
+const getPoll = catchAsync(async (req, res) => {
+    const {pollId}= req.params;
+    const result = await PollServices.getPollFromDB(pollId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Poll retrived successfully",
+        data: result,
+    });
+});
+
+const getAllPolls = catchAsync(async (req, res) => {
+    const result = await PollServices.getAllPollsFromDB();
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "All polls retrived successfully",
+        data: result,
+    });
+});
+const getMyPolls = catchAsync(async (req, res) => {
+    const {userId} = req.params;
+    const result = await PollServices.getMyPollsFromDB(userId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "My polls retrived successfully",
         data: result,
     });
 });
@@ -40,5 +71,8 @@ const createReaction = catchAsync(async (req, res) => {
 export const PollControllers = {
     createPoll,
     createVote,
-    createReaction
+    createReaction,
+    getPoll,
+    getAllPolls,
+    getMyPolls
 }

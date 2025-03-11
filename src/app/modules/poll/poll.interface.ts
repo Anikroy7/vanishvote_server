@@ -1,6 +1,6 @@
 export type TPoll = {
     id: string;
-    pollType: PollType;
+    pollType: "yes_no" | "multiple_choice";
     options: TOption[];
     question: string;
     createdBy: string;
@@ -21,11 +21,6 @@ export type TReaction={
 export type TOption = {
     text: string;
     vote: string[];
-}
-
-enum PollType {
-    "yes_no",
-    "multiple_choice"
 }
 
 enum ReactionType {

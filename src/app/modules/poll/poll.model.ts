@@ -6,6 +6,7 @@ export enum ReactionType {
     FIRE = "trending"
 }
 
+
 export type TReaction = {
     userId: string;
     reactionType: ReactionType;
@@ -38,7 +39,9 @@ const reactionSchema = new Schema<TReaction>({
 const pollSchema = new Schema<TPoll>({
 
     pollType: {
+        type: String,
         enum: ["yes_no", "multiple_choice"],
+        required: true
     },
     options: {
         type: [optionSchema],
@@ -58,7 +61,7 @@ const pollSchema = new Schema<TPoll>({
     },
     resultsHidden: {
         type: Boolean,
-        default: false
+        default: true
     },
     private: {
         type: Boolean,
